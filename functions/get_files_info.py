@@ -35,3 +35,45 @@ schema_get_files_info = types.FunctionDeclaration(
         },
     ),
 )
+
+schema_get_file_content = types.FunctionDeclaration(
+    name="get_files_content",
+    description="Lists a file's contents while truncating it to a maximum of 10,000 characters.",
+    parameters=types.Schema(
+        type=types.Type.OBJECT,
+        properties={
+            "directory": types.Schema(
+                type=types.Type.STRING,
+                description="The directory to read files from, relative to the working directory. If not provided, function will fail.",
+            ),
+        },
+    ),
+)
+
+schema_run_python_file = types.FunctionDeclaration(
+    name="run_python_file",
+    description="Will attempt to run the given file with optional parameters if included in the call.",
+    parameters=types.Schema(
+        type=types.Type.OBJECT,
+        properties={
+            "directory": types.Schema(
+                type=types.Type.STRING,
+                description="The directory to run files from, relative to the working directory. If not provided, function might fail or run the wrong file if names match.",
+            ),
+        },
+    ),
+)
+
+schema_write_file = types.FunctionDeclaration(
+    name="write_file",
+    description="Will attempt to overwrite an existing file's contents, or create it, if it doesn't already exist.",
+    parameters=types.Schema(
+        type=types.Type.OBJECT,
+        properties={
+            "directory": types.Schema(
+                type=types.Type.STRING,
+                description="The directory to find the file to write to from, relative to the working directory. If not provided, function will try to create the directory and add the file to it.",
+            ),
+        },
+    ),
+)
