@@ -26,7 +26,7 @@ def call_available_function(function_call_part, verbose=False):
     if verbose:
         print(f"Calling function: {function_call_part.name}({function_call_part.args})")
     else:
-        print(f" - Calling function: {function_call_part.name}")
+        print(f"-> Calling function: {function_call_part.name}")
 
     function_name = function_call_part.name
     print(f"Trying to reach function {function_name}")
@@ -44,6 +44,7 @@ def call_available_function(function_call_part, verbose=False):
     args = dict(function_call_part.args)
     args["working_directory"] = WORKING_DIR
     function_result = available_functions_dict[function_name](**args)
+    print(f"Reached function result:\n{function_result}returning.")
 
     return types.Content(
         role="tool",
